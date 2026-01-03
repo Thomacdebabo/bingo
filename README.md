@@ -4,8 +4,9 @@ Website which hosts prediction bingos with your friends. The idea is that everyb
 
 # Run
 ```
+mkdir data
 docker build -t bingo-app .
-docker run --rm -it -p 8000:8000 -v "$(pwd)/data":/app/data bingo-app
+docker run --rm -it -d -p 8000:8000 -v "$(pwd)/data":/app/data bingo-app
 ```
 
 
