@@ -1,7 +1,4 @@
-const API_BASE = 'http://localhost:8000';
-
-function el(id) { return document.getElementById(id) }
-
+// uses shared helpers from common.js: API_BASE, el, show
 async function loadList() {
     try {
         const res = await fetch(`${API_BASE}/cards`);

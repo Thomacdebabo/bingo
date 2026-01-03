@@ -1,11 +1,6 @@
-const API_BASE = 'http://localhost:8000';
-
-function el(id) { return document.getElementById(id) }
-
+// shared helpers from common.js (API_BASE, el, showOut)
 let card = null;
 let predictions = [];
-
-function showOut(txt) { el('out').textContent = typeof txt === 'string' ? txt : JSON.stringify(txt, null, 2) }
 
 function stateClass(s) { if (s === true) return 'true'; if (s === false) return 'false'; return 'none' }
 function stateSymbol(s) {

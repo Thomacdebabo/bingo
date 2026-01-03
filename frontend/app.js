@@ -1,17 +1,4 @@
-const API_BASE = "http://localhost:8000";
-
-function el(id) { return document.getElementById(id); }
-
-function show(obj) {
-    el('output').textContent = typeof obj === 'string' ? obj : JSON.stringify(obj, null, 2);
-}
-
-const ALLOWED_COUNTS = [9, 16, 25];
-
-function chooseAllowedCount(n) {
-    for (const v of ALLOWED_COUNTS) if (v >= n) return v;
-    return ALLOWED_COUNTS[ALLOWED_COUNTS.length - 1];
-}
+// uses shared helpers from common.js: API_BASE, el, show, chooseAllowedCount
 
 function getCount() {
     const sel = el('countSelect');

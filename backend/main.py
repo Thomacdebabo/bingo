@@ -8,10 +8,9 @@ from uuid import uuid4
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
-DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR = Path(__file__).parent.parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
 
@@ -87,7 +86,7 @@ def create_card(payload: BingoCardCreate):
     save_card(card)
     # debug log and return serialized dict to ensure proper JSON body
     print(f"Created card {card_id}")
-    return card.dict()
+    return card
 
 
 @app.get("/cards/{card_id}", response_model=BingoCard)
@@ -125,7 +124,7 @@ def update_card(card_id: str, payload: BingoCardCreate):
     card = BingoCard(id=card_id, name=payload.name, predictions=payload.predictions)
     save_card(card)
     print(f"Updated card {card_id}")
-    return card.dict()
+    return card
 
 
 # If frontend assets are present, mount them at root AFTER registering API routes
