@@ -59,33 +59,31 @@ def card_path(card_id: str) -> Path:
 
 def save_card(card: BingoCard) -> None:
     path = card_path(card.id)
+
     with path.open("w", encoding="utf-8") as f:
         json.dump(card.dict(), f, ensure_ascii=False, indent=2)
 
 
 def load_card(card_id: str) -> BingoCard:
     path = card_path(card_id)
+
     if not path.exists():
         raise FileNotFoundError
+
     with path.open("r", encoding="utf-8") as f:
         data = json.load(f)
-    # ensure name present for backward compatibility
+
     if "name" not in data or data.get("name") is None:
         data["name"] = ""
+
     return BingoCard(**data)
-
-
-# expose a ping only if frontend isn't present (mount static later)
 
 
 @app.post("/cards", response_model=BingoCard, status_code=201)
 def create_card(payload: BingoCardCreate):
-    # use short id (8 hex chars)
-    card_id = uuid4().hex[:8]
+    card_id = str(uuid4())[:8]
     card = BingoCard(id=card_id, name=payload.name, predictions=payload.predictions)
     save_card(card)
-    # debug log and return serialized dict to ensure proper JSON body
-    print(f"Created card {card_id}")
     return card
 
 
@@ -99,7 +97,6 @@ def get_card(card_id: str):
 
 @app.get("/cards", response_model=List[BingoCardSummary])
 def list_cards():
-    # scan data directory for saved cards
     cards: List[BingoCardSummary] = []
     for p in DATA_DIR.glob("*.json"):
         try:
@@ -111,19 +108,23 @@ def list_cards():
             cards.append(BingoCardSummary(id=cid, name=name, count=len(preds)))
         except Exception:
             continue
-    # sort by name then id
+        
     cards.sort(key=lambda c: (c.name.lower() if c.name else "", c.id))
     return cards
 
 
 @app.put("/cards/{card_id}", response_model=BingoCard)
 def update_card(card_id: str, payload: BingoCardCreate):
+
     path = card_path(card_id)
+
     if not path.exists():
         raise HTTPException(status_code=404, detail="Card not found")
+    
     card = BingoCard(id=card_id, name=payload.name, predictions=payload.predictions)
+
     save_card(card)
-    print(f"Updated card {card_id}")
+    
     return card
 
 
