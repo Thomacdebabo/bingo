@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bingo Frontend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bingo Predictions</h1>
+
+        <div id="mainButtons" class="center-panel">
+            <button id="createTopBtn" class="btn large">Create</button>
+            <div class="id-row">
+                <label class="id-label">ID:</label>
+                <input id="idInput" placeholder="enter id" class="id-input" />
+                <div class="id-actions">
+                    <button id="changeTopBtn" class="btn secondary">Change</button>
+                    <button id="viewTopBtn" class="btn secondary">View</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="formArea" class="card hidden">
+            <input id="cardId" type="hidden" />
+            <div class="mt-8">
+                <label>Card Name:</label>
+                <div class="spacer-xs"></div>
+                <input id="cardName" placeholder="(optional) e.g. Alice's card" class="cardname-input" />
+            </div>
+
+            <div style="margin-top:12px">
+                <label>Predictions</label>
+                <div class="form-controls">
+                    <label>Count:
+                        <select id="countSelect" class="count-select">
+                            <option value="9">9</option>
+                            <option value="16" selected>16</option>
+                            <option value="25">25</option>
+                        </select>
+                    </label>
+                    <button id="regenBtn" class="btn secondary">Regenerate Rows</button>
+                    <span class="muted-left">(empty name fields are ignored when creating)</span>
+                </div>
+
+                <div id="predictionsGrid" class="predictions-grid"></div>
+            </div>
+
+            <div class="row" style="margin-top:12px">
+                <button id="createBtn" class="btn">Create Card</button>
+                <button id="updateBtn" class="btn secondary">Save Changes</button>
+            </div>
+
+            <h3 style="margin-top:18px">Response</h3>
+            <div id="output" class="output">No activity yet.</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

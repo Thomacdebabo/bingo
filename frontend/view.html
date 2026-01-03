@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bingo Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="cardNameDisplay">Bingo Viewer</h1>
+
+
+        <div class="card">
+            <div id="gridWrap"><!-- grid will be rendered here --></div>
+            <span class="small">Click cells to cycle state: neutral → ✓ → ✕ → neutral — changes are saved
+                automatically</span>
+            <h3 class="mt-12">Entries</h3>
+
+            <div id="entries" class="list"></div>
+
+            <div id="out" class="small mt-12"></div>
+        </div>
+        <div class="controls">
+            <div class="flex-1"></div>
+            <button id="downloadBtn" class="btn secondary">Download JSON</button>
+            <button id="exportBtn" class="btn secondary">Export Image</button>
+
+        </div>
+
+    </div>
+
+    <script src="view.js"></script>
+</body>
+
+</html>

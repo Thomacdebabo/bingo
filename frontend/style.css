@@ -1,0 +1,467 @@
+:root {
+    --bg-0: #071226;
+    --bg-1: #081827;
+    --card: #0f1722;
+    --muted: #9aa6b2;
+    --accent: #06b6d4;
+    --accent-2: #34d399;
+    --success-bg: rgba(16, 185, 129, 0.10);
+    --danger-bg: rgba(239, 68, 68, 0.06);
+    --glass: rgba(255, 255, 255, 0.02);
+    --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    padding: 28px 20px;
+    background: linear-gradient(180deg, var(--bg-0), var(--bg-1));
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto;
+    color: #e6eef6;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+}
+
+.container {
+    max-width: 980px;
+    margin: 0 auto
+}
+
+h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #dff7fb
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+.main-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.btn {
+    appearance: none;
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #042029;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(6, 22, 31, 0.5);
+    transition: transform .12s ease, box-shadow .12s
+}
+
+.btn:active {
+    transform: translateY(1px)
+}
+
+.btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.04)
+}
+
+label {
+    font-size: 14px;
+    color: var(--muted)
+}
+
+/* style all visible inputs and textareas (exclude hidden inputs) */
+input:not([type="hidden"]),
+textarea,
+input[type="text"],
+input[type="search"],
+select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.02);
+    color: #e6eef6;
+    min-height: 40px;
+}
+
+input::placeholder {
+    color: rgba(230, 238, 246, 0.45)
+}
+
+/* Center headings */
+h1,
+h3 {
+    text-align: center
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid rgba(6, 182, 212, 0.12);
+    border-color: rgba(6, 182, 212, 0.18)
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.pred-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px
+}
+
+.pred-name {
+    width: 220px
+}
+
+.pred-desc {
+    flex: 1
+}
+
+.output {
+    white-space: pre-wrap;
+    background: transparent;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    color: var(--muted)
+}
+
+.card .controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 12px 0
+}
+
+.grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 18px
+}
+
+.cell {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    border-radius: 10px;
+    padding: 12px;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    transition: transform .12s ease
+}
+
+.cell:hover {
+    transform: translateY(-4px)
+}
+
+.cell.none {
+    border: 1px solid rgba(255, 255, 255, 0.03)
+}
+
+.cell.true {
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.18), rgba(34, 197, 94, 0.12));
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.08);
+}
+
+.cell.false {
+    background: linear-gradient(180deg, rgba(239, 68, 68, 0.14), rgba(244, 114, 182, 0.06));
+    border: 1px solid rgba(239, 68, 68, 0.22);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.06);
+}
+
+
+.cell .state svg {
+    display: block;
+    width: 18px;
+    height: 18px
+}
+
+.cell .state {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 6px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--muted);
+    transition: background .12s ease, color .12s ease, box-shadow .12s ease;
+}
+
+.cell.true .state {
+    background: #10b981;
+    color: #062018;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.16);
+}
+
+.cell.false .state {
+    background: #ef4444;
+    color: #2b0a0a;
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.12);
+}
+
+.list {
+    margin-top: 12px
+}
+
+.list-item {
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    color: #dbeef0
+}
+
+.list-item .desc {
+    color: var(--muted);
+    margin-top: 6px
+}
+
+.note {
+    margin-top: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
+    color: #e6eef6
+}
+
+.small {
+    font-size: 13px;
+    color: var(--muted)
+}
+
+@media (max-width:720px) {
+    .main-buttons {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .pred-row {
+        flex-direction: column
+    }
+
+    .pred-name {
+        width: 100%
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width:480px) {
+    body {
+        padding: 16px
+    }
+
+    .container {
+        padding: 0 6px
+    }
+
+    .card {
+        padding: 12px;
+        border-radius: 10px
+    }
+
+    .btn {
+        padding: 10px 12px;
+        font-size: 15px
+    }
+
+    .btn.large {
+        padding: 12px 16px;
+        font-size: 16px
+    }
+
+    .note,
+    input,
+    select {
+        font-size: 14px
+    }
+
+    .cell {
+        min-height: 56px;
+        padding: 8px
+    }
+
+    .grid {
+        gap: 8px
+    }
+
+    .center-panel {
+        padding: 14px
+    }
+}
+
+/* Utilities used by HTML for spacing/layout */
+.hidden {
+    display: none
+}
+
+.mt-8 {
+    margin-top: 8px
+}
+
+.mt-12 {
+    margin-top: 12px
+}
+
+.mt-18 {
+    margin-top: 18px
+}
+
+.spacer-xs {
+    height: 8px
+}
+
+.id-label {
+    margin-left: 6px;
+    display: flex;
+    align-items: center
+}
+
+.id-input {
+    width: 220px;
+    margin-left: 8px
+}
+
+.id-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cardname-input {
+    width: 320px
+}
+
+/* Ensure specific inputs don't scale with viewport height */
+.id-input,
+.cardname-input {
+    height: 40px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+}
+
+/* Force fixed input heights inside the center panel to prevent viewport-scaling */
+.center-panel input,
+.center-panel select,
+.center-panel textarea {
+    min-height: 0 !important;
+    height: 40px !important;
+    max-height: 40px !important;
+    line-height: 20px !important;
+}
+
+.form-controls {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.count-select {
+    width: 120px;
+    margin-left: 6px;
+    padding: 8px
+}
+
+.muted-left {
+    color: var(--muted);
+    margin-left: 6px
+}
+
+.predictions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px
+}
+
+.flex-1 {
+    flex: 1
+}
+
+/* Centered panel for index controls */
+.center-panel {
+    max-width: 620px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 12px 32px rgba(3, 8, 18, 0.6);
+}
+
+.btn.large {
+    padding: 14px 20px;
+    font-size: 18px;
+    border-radius: 12px
+}
+
+.id-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    justify-content: center
+}
+
+.id-row .id-input {
+    flex: 0 0 260px;
+    margin-left: 12px
+}
+
+.id-actions {
+    display: flex;
+    gap: 8px
+}
+
+@media (max-width:720px) {
+    .center-panel {
+        padding: 16px
+    }
+
+    .id-row {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .id-row .id-input {
+        margin-left: 0;
+        width: 100%
+    }
+
+    .id-actions {
+        justify-content: space-between
+    }
+}
